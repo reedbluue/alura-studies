@@ -1,20 +1,20 @@
 import { TarefaInterface } from '../../interfaces/TarefaInterface';
-import './List.scss';
 import { ListItem } from './listItem/ListItem';
+import style from './List.module.scss';
 
-interface ListInterface {}
-
-const tarefas: Array<TarefaInterface> = [
-  { tarefa: 'React', tempo: '02:00:00' },
-  { tarefa: 'Testando', tempo: '01:30:00' },
-];
+interface ListInterface {
+  tarefas: Array<TarefaInterface>,
+  tarefaSelecionada: TarefaInterface,
+  selecionaTarefaCb(tarefaSelecionada: TarefaInterface): void;
+}
 
 export const List = (props: ListInterface) => {
+  
   return (
-    <section className="list">
-      <h2 className="list__title">Estudos do dia</h2>
-      <ul className="list__content">
-        {tarefas.map((tarefa, index) => <ListItem time={tarefa.tempo} key={`tarefa-${tarefa.tarefa}-${index}`}>{tarefa.tarefa}</ListItem>)}
+    <section className={style['list']}>
+      <h2 className={style["list__title"]}>Estudos do dia</h2>
+      <ul className={style["list__content"]}>
+        {props.tarefas.map((tarefa, index) => <ListItem key={`tarefa-${tarefa.tarefa}-${index}`} tarefa={tarefa} onClickCB={props.selecionaTarefaCb}></ListItem>)}
       </ul>
     </section>
   );

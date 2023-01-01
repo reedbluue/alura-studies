@@ -1,4 +1,7 @@
 export interface TarefaInterface {
+  id: string,
   tarefa: string,
-  tempo: string
+  tempo: string,
+  selecionado: boolean,
+  completado: boolean
 }
